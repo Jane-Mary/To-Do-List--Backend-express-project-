@@ -1,9 +1,12 @@
 const express = require('express');
-const port = 3000;
+const port = process.env.PORT;
 const mongoose = require('mongoose');
 const cors = require('cors');
+require('dotenv').config();
+// const dotenv = require('dotenv);
+// dotenv.config()
 
-mongoose.connect("mongodb://127.0.0.1:27017/level5_tasks_management")
+mongoose.connect(process.env.DATABASE_URL)
 .then(connection => {
     const app = express()
     app.use(cors());
@@ -24,9 +27,9 @@ mongoose.connect("mongodb://127.0.0.1:27017/level5_tasks_management")
     })
 
 })
-.catch(error => {
-    throw new Error("Database error: " + error)
-});
+// .catch(error => {
+//     throw new Error("Database error: " + error)
+// });
 
 
 
